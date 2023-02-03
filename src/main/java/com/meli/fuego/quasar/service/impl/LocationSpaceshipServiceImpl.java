@@ -37,13 +37,12 @@ public class LocationSpaceshipServiceImpl implements LocationSpaceshipService{
 	 * @param messageDe (Array con la informacion de los mensajes parciales de los satelites)
 	 * @return
 	 */
-	public String getMessage(List<Satellite> messageDe) {
+	private String getMessage(List<Satellite> messageDe) {
 		// Extraer listado de mensaje
 		List<List<String>> messages = new ArrayList<List<String>>();
 		messageDe.stream().forEach(s -> {
         	messages.add(s.getMessage());
         });
-		
 		
 		List<String> fullMessage = Arrays.asList(new String[messages.get(0).size()]);
 		for (List<String> msg : messages) {
@@ -64,34 +63,33 @@ public class LocationSpaceshipServiceImpl implements LocationSpaceshipService{
 	 * @param distances (Array con la informacion de los satelites)
 	 * @return
 	 */
-	public Position getLocation(List<Satellite> distances) {
+	private Position getLocation(List<Satellite> distances) {
 		
 		double[] range = new double[distances.size()];
 		for(int i = 0 ; i < distances.size() ; i++ ) {
 			range[i] = distances.get(i).getDistance();
 		}
-		
-		logger.info("Calculate trilateration status=START distances={}", Arrays.toString(range));
+		logger.info( Arrays.toString(range));
         try {
-            //Distance equation Kenobi - Skywalker
-            double a = -2 * KENOBI.getX() + 2 * SKYWALKER.getX();
-            double b = -2 * KENOBI.getY() + 2 * SKYWALKER.getY();
-            double c = pow(range[0], 2) - pow(range[1], 2) - pow(KENOBI.getX(), 2) + pow(SKYWALKER.getX(), 2) - pow(KENOBI.getY(), 2) + pow(SKYWALKER.getY(), 2);
-            //Distance equation Skywalker - Sato
-            double e = -2 * SKYWALKER.getX() + 2 * SATO.getX();
-            double f = -2 * SKYWALKER.getY() + 2 * SATO.getY();
-            double g = pow(range[1], 2) - pow(range[2], 2) - pow(SKYWALKER.getX(), 2) + pow(SATO.getX(), 2) - pow(SKYWALKER.getY(), 2) + pow(SATO.getY(), 2);
-            //Finding Cramer's rule determinants
-            double d = a * f - b * e;
-            if (d == 0.0)
-                throw new IllegalArgumentException("could.not.find.spaceship.coordinates");
-            double dx = c * f - b * g;
-            double dy = a * g - c * e;
+            //Distancias entre Kenobi y Skywalker (-2x(1) + 2x(2))x + (-2y1 + 2y2)y = r^2(1)-r^2(2)-x^2(1)-x^2(1)-y^2(1)-y^2(1)
+            double ksa = -2 * KENOBI.getX() + 2 * SKYWALKER.getX();
+            double ksb = -2 * KENOBI.getY() + 2 * SKYWALKER.getY();
+            double res_ks = pow(range[0], 2) - pow(range[1], 2) - pow(KENOBI.getX(), 2) + pow(SKYWALKER.getX(), 2) - pow(KENOBI.getY(), 2) + pow(SKYWALKER.getY(), 2);
+            //Distancias entre Skywalker y Sato
+            double sse = -2 * SKYWALKER.getX() + 2 * SATO.getX();
+            double ssf = -2 * SKYWALKER.getY() + 2 * SATO.getY();
+            double res_ss = pow(range[1], 2) - pow(range[2], 2) - pow(SKYWALKER.getX(), 2) + pow(SATO.getX(), 2) - pow(SKYWALKER.getY(), 2) + pow(SATO.getY(), 2);
+            //Determinar ubicacion nave principal
+            double d = ksa * ssf - ksb * sse;
+            if (d == 0.0) {throw new IllegalArgumentException("could.not.find.spaceship.coordinates");}
+            double dx = res_ks * ssf - ksb * res_ss;
+            double dy = ksa * res_ss - res_ks * sse;
+            // Determinar x=Dx/D y=Dy/D
             float x = BigDecimal.valueOf(dx / d).setScale(2, 0).floatValue();
             float y = BigDecimal.valueOf(dy / d).setScale(2, 0).floatValue();
             return new Position(x, y);
         } catch(final Exception ex) {
-        	logger.error("Calculate trilateration status=ERROR distances={}", Arrays.toString(range), ex);
+        	logger.error("Error al calcular la ubicacion", Arrays.toString(range), ex);
             throw new PositionNotFoundException(ex.getMessage());
         }
     }

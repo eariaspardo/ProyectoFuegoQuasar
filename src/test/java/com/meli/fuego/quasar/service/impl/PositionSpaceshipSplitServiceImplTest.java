@@ -29,8 +29,6 @@ public class PositionSpaceshipSplitServiceImplTest {
 	public static final String NOFINDSTELLITE = "No se encontro el Satelite";
 	public static final String NAMESATELLITE = "El nombre del satelite es requerido";
 	
-	private static Logger logger = LoggerFactory.getLogger(PositionSpaceshipSplitServiceImpl.class);
-	
 	@Mock
 	private RestTemplate restTemplate = new RestTemplate();
 	
