@@ -72,14 +72,16 @@ Acepta como body request:
 
 ```json
 {
-    "distance": 100.0,
+    "distance": .100.0,
     "message": ["este", "", "", "mensaje"]
 }
 ```
 #### Endpoint 2
 
 ```shell
+
  /api/v1/topsecret_split/{satellite_name} [GET]
+ 
 ```
 Devuelve la pocision de la nave y el mensaje, siemprey cuando exista la informacion del satelite.
 Para cada satelite debe existir cargada la distancia y el mensaje, de lo contrario devolvera un error, con el mesaje de error correspondiente.
