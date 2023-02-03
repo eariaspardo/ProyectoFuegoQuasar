@@ -18,7 +18,7 @@ Patron usado por defecto por Spring y que permite la inyeccionde dependencias al
 #### Vista de Paquetes
 En la vista de paquetes se definen los paquetes que tiene el proyecto de software. Cada Paquete es una capa y agrupa un conjunto de clases con responsabilidades, los paquetes son:
 
-![vista de paquetes]()
+![vista de paquetes](https://github.com/eariaspardo/ProyectoFuegoQuasar/blob/main/src/main/resources/assets/Modelo%20de%20paquetes.PNG?raw=true)
 
 - controller: Todos las clases que reciben peticiones HTTP a los end point definidos
 - services: Todas las clases con la lógica de negocio de localizacion de la nave y construccion del mensaje
