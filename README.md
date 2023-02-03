@@ -1,18 +1,26 @@
 # ProyectoFuegoQuasar
 Proyecto de MELI Fuego Quasar
 
-
 Api que retorna la fuente y contenido del mensaje de auxilio. Para esto, 
 se cuenta con tres satélites que permitirán triangular la posición.
 El mensaje puede no llegar completo a cada satélite debido al campo de asteroides frente a la nave.
 
-Api rest que  cuenta con tres servicios expuestos
+### Patron usado
+CQRS : Tenemos un único sistema que se encarga de realizar operaciones de negocio y nos permite consultar la información en la que se encuentra nuestro sistema. Manejando servicios de tipo monolitico al tratarse de un proyecto pequeño.
+Este patron divide en proyecto en dos subsistemas uno responsable de las peticiones y otro de las consultas 
+
+![modelo CQRS](/https://miro.medium.com/v2/resize:fit:720/format:webp/1*QF4XnD2Zhmv_K-85SOtPIA.png)
+
+Singleton : patron usado por defecto por Spring y que permite la inyeccionde dependencias al crear una unica instancia.
 
 ### Heramientas
 - Java 1.8
 - Spring 2.6.4
 - Postman
 - Maven 3.8
+- AWS EC2 (creacion de una instancia para subir el .jar)
+
+Api rest que cuenta con tres servicios expuestos
 
 ### Nivel 1 - Nivel 2
 
