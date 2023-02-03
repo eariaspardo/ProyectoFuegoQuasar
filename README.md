@@ -69,13 +69,15 @@ Este endpoint, recibe informacion del satelite, lo valida y guarda de forma loca
 ```
 Se debe enviar como pararametro de URL el nombre del satelite, la informacion debe estar completa en caso contrario arrojara un mensaje de error.
 Acepta como body request:
+
 ```json
 {
-"distance": 100.0,
-"message": ["este", "", "", "mensaje"]
+    "distance": 100.0,
+    "message": ["este", "", "", "mensaje"]
 }
 ```
 #### Endpoint 2
+
 ```shell
  /api/v1/topsecret_split/{satellite_name} [GET]
 ```
