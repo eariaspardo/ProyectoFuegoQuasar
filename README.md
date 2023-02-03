@@ -9,10 +9,10 @@ El mensaje puede no llegar completo a cada satélite debido al campo de asteroid
 Api rest que  cuenta con tres servicios expuestos
 
 ### Heramientas
-Java 1.8
-Spring 2.6.4
-Postman
-Maven 3.8
+- Java 1.8
+- Spring 2.6.4
+- Postman
+- Maven 3.8
 
 ### Nivel 1 - Nivel 2
 
@@ -60,6 +60,7 @@ Y como respuesta obtenemos un json, por ejemplo
     },
     "message": "este es un mensaje secreto"
 }
+```
 ### Nivel 3
 
 #### Endpoint 1
