@@ -63,9 +63,9 @@ Y como respuesta obtenemos un json, por ejemplo
 ### Nivel 3
 
 #### Endpoint 1
-Este endpoint, recibe informacion del satelite, lo valida y guarda de forma local en una variable Global.
+Este endpoint, recibe informacion del satelite, lo valida y guarda de forma local en una variable Global
 ```shell
- api/v1/topsecret_split/{satellite_name} [POST]
+/api/v1/topsecret_split/{satellite_name} [POST]
 ```
 Se debe enviar como pararametro de URL el nombre del satelite, la informacion debe estar completa en caso contrario arrojara un mensaje de error.
 Acepta como body request:
