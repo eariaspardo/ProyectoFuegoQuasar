@@ -55,7 +55,7 @@ Y como respuesta obtenemos un json, por ejemplo
 ```json
 {
     "position": {
-        "x": .100.0,
+        "x": 100.0,
         "y": 75.5
     },
     "message": "este es un mensaje secreto"
@@ -72,7 +72,7 @@ Acepta como body request:
 
 ```json
 {
-    "distance": .100.0,
+    "distance": 100.0,
     "message": ["este", "", "", "mensaje"]
 }
 ```
