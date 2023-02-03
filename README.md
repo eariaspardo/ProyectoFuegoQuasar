@@ -60,6 +60,7 @@ Y como respuesta obtenemos un json, por ejemplo
     },
     "message": "este es un mensaje secreto"
 }
+```
 ### Nivel 3
 
 #### Endpoint 1
