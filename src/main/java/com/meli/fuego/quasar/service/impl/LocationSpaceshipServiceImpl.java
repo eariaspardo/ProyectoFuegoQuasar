@@ -62,6 +62,7 @@ public class LocationSpaceshipServiceImpl implements LocationSpaceshipService{
 	 * Obtener la Ubicacion
 	 * @param distances (Array con la informacion de los satelites)
 	 * @return
+	 * NOTA : new TrilaterationFunction (Sirve como un metodo de ubicacion de elementos) libreria com.lemmingapex.trilateration
 	 */
 	private Position getLocation(List<Satellite> distances) {
 		
@@ -93,5 +94,5 @@ public class LocationSpaceshipServiceImpl implements LocationSpaceshipService{
             throw new PositionNotFoundException(ex.getMessage());
         }
     }
-
+	
 }
