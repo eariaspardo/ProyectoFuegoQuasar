@@ -14,15 +14,21 @@ import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.meli.fuego.quasar.entity.Position;
 import com.meli.fuego.quasar.entity.PositionSpaceShip;
 import com.meli.fuego.quasar.entity.Satellite;
 import com.meli.fuego.quasar.entity.SatelliteSign;
-import com.meli.fuego.quasar.exception.PositionNotFoundException;
 import com.meli.fuego.quasar.service.LocationSpaceshipService;
 
+/**
+ * Clase que responde a los ejercicios del Nivel 1 y 2, conta de los metodos de localizacion de la nave (getSatellite) y mensaje compleo (getSpacheshipSplit)
+ * @author Edilson
+ *
+ */
 @Service
 public class LocationSpaceshipServiceImpl implements LocationSpaceshipService{
 	
@@ -82,7 +88,7 @@ public class LocationSpaceshipServiceImpl implements LocationSpaceshipService{
             double res_ss = pow(range[1], 2) - pow(range[2], 2) - pow(SKYWALKER.getX(), 2) + pow(SATO.getX(), 2) - pow(SKYWALKER.getY(), 2) + pow(SATO.getY(), 2);
             //Determinar ubicacion nave principal
             double d = ksa * ssf - ksb * sse;
-            if (d == 0.0) {throw new IllegalArgumentException("could.not.find.spaceship.coordinates");}
+            if (d == 0.0) {throw new IllegalArgumentException("no se encuentran las coordenadas");}
             double dx = res_ks * ssf - ksb * res_ss;
             double dy = ksa * res_ss - res_ks * sse;
             // Determinar x=Dx/D y=Dy/D
@@ -91,7 +97,7 @@ public class LocationSpaceshipServiceImpl implements LocationSpaceshipService{
             return new Position(x, y);
         } catch(final Exception ex) {
         	logger.error("Error al calcular la ubicacion", Arrays.toString(range), ex);
-            throw new PositionNotFoundException(ex.getMessage());
+        	throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage(), ex);
         }
     }
 	
