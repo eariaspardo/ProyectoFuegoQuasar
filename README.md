@@ -107,7 +107,20 @@ Acepta como body request
 Devuelve la pocision de la nave y el mensaje, siemprey cuando exista la informacion del satelite.
 Para cada satelite debe existir cargada la distancia y el mensaje, de lo contrario devolvera un error, con el mesaje de error correspondiente.
 
+#### Host en AWS
+
 Los End Points se encuentran alojados en un EC2 de AWS, por se parte de la capa gratuita no se encuentra habilitado hasta su entrega para evitar el cierre del EC2 por limite de tiempo
 
-[EndPoint AWS api/v1/topsecret/(POST) ip publica(174.4.6.12)](18.118.144.60:8080/api/v1/topsecret/)
+[EndPoint de AWS ip publica(18.118.144.60:8080/api/v1/topsecret/)](18.118.144.60:8080/api/v1/topsecret/)
+
+#### Ejecutar en Local
+
+Para ejecutar el proyecto en local, se debe de descargar el proyecto de la rama "main" y dentro de la carpeta ejecutar el codigo:
+```shell
+ mvn clean install
+```
+Seguido del codigo 
+```shell
+ mvn spring-boot:run
+```
 
